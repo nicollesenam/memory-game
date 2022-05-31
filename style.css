@@ -1,0 +1,57 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background-color: #9543c5;
+}
+
+.memory-game{
+    height: 640px;
+    width: 640px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    perspective: 1000px;
+}
+
+.card{
+    height: calc(33.333% - 10%);
+    width: calc(25% - 10px);
+    margin: 5px;
+    position: relative;
+    box-shadow: 1px 1px 1px rgba(1, 1, 1, 0.3);
+    cursor: pointer;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .9s;
+}
+
+.card:active{
+    transform: scale(0.97);
+    transition: transform .3s;
+}
+
+.card-front,
+.card-back{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    position: absolute;
+    border-radius: 5px;
+    background-color: white;
+    backface-visibility: hidden; /*propriedade que retira o verso do elemento, assim permitindo a carta da frente que está por baixo aparecer*/
+}
+
+.card-front{
+    transform: rotateY(180deg); /*sem essa propriedade, rotacionando ela, iria ficar ambos os elementos com as partes de tras viradas, o rotate faz virar a back face e mostrar a front face*/
+}
+
+/* flip card animation */
+
+.card.flip{ /*quando a classe card tiver a classe flip, que é colocada dinamicamente pelo js:*/
+    transform: rotateY(180deg);
+}
